@@ -62,3 +62,17 @@ them all in this one.
 
 **Then** the trip length coincides with the arrival minus the departure time 
 
+## Approach
+The main approach was to verify that the basic functionality is working as expected. In this case, for such a popular 
+route, this means that at least one result must be present for each transportation mean.
+
+Having that in mind, the other main features of the result page are also considered in order to make sure they work as 
+the user expects them to work. E.g., when searching for the cheapest ticket, then the cheapest one is listed on the top 
+and so on. Again, the main idea is to cover the principal user flows/cases in the search results page.
+
+I am assuming that these are the common things a user would do, so making sure that they still work would keep the 
+website traffic stable for the search page. Therefore, these tests could also be used for some monitoring.
+
+The search button on the search results page is not considered in these test cases, neither the Bus and Airplane results 
+due to the task constraints and also for simplicity. 
+
