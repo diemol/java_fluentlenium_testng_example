@@ -1,4 +1,5 @@
 import org.fluentlenium.adapter.testng.FluentTestNg;
+import org.fluentlenium.core.annotation.Page;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
@@ -6,6 +7,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
+import pages.HomePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SearchTest extends FluentTestNg {
 
     private static final Logger log = Logger.getLogger(SearchTest.class.getName());
+
+    @Page
+    private HomePage homePage;
 
     @Override
     public String getRemoteUrl() {
@@ -46,22 +51,16 @@ public class SearchTest extends FluentTestNg {
 
         log.info("Loading GoEuro...");
         window().maximize();
-        goTo("http://www.goeuro.com/");
-
-        // Input departure and destination cities
-        log.info("Typing departure and destination cities...");
-        find(By.cssSelector(".departure.row-input")).
-                find(By.id("$city")).
-                write("Berlin");
-        find(By.cssSelector(".arrival.row-input")).
-                find(By.id("$city")).
-                write("Prague");
+        goTo(homePage);
+        homePage.isAt();
 
         // Avoid getting a 2nd tab from the partner search
         log.info("Removing 'Search accommodation with...' check...");
-        find(By.className("sb-partner")).
-                find(By.className("sb-icon")).
-                click();
+        homePage.removeSearchAccommodationCheck();
+
+        // Input departure and destination cities
+        log.info("Typing departure and destination cities...");
+        homePage.searchRoute("Berlin", "Prague");
 
         // Search with default date
         log.info("Click on search...");
