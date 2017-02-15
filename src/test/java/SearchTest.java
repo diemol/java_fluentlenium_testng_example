@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.SearchResultsPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,19 +59,15 @@ public class SearchTest extends FluentTestNg {
         log.info("Removing 'Search accommodation with...' check...");
         homePage.removeSearchAccommodationCheck();
 
-        // Input departure and destination cities
+        // Search with default date, for Berlin - Prague routes
         log.info("Typing departure and destination cities...");
-        homePage.searchRoute("Berlin", "Prague");
-
-        // Search with default date
-        log.info("Click on search...");
-        find(By.cssSelector(".sb-field.search-button")).
-                click();
+        SearchResultsPage searchResultsPage = homePage.searchRoute("Berlin", "Prague");
 
         // Click on Cheapest tab (no fixed IDs were found on the page, then I take the approach
         // of using the index of the tab).
         log.info("Waiting for elements to load...");
-        await().atMost(10, TimeUnit.SECONDS).until(() -> find(By.cssSelector("div[class^='SortingBar']")).present());
+        searchResultsPage.isAt();
+        // await().atMost(10, TimeUnit.SECONDS).until(() -> find(By.cssSelector("div[class^='SortingBar']")).present());
         log.info("Clicking on Cheapest tab...");
         find(By.cssSelector("div[class^='SortingBar']")).
                 find(By.tagName("div")).
