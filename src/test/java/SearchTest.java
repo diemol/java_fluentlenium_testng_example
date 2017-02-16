@@ -75,6 +75,7 @@ public class SearchTest extends FluentTestNg {
         searchResultsPage.clickOnTrainTab();
 
         // Get the list of prices
+        // I assume that it is enough to validate the order only on the first page
         log.info("Getting list of prices and asserting the order...");
         List<Float> pricesList = searchResultsPage.getListOfPrices();
         log.info(pricesList.toString());
