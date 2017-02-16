@@ -63,23 +63,18 @@ public class SearchTest extends FluentTestNg {
         log.info("Typing departure and destination cities...");
         SearchResultsPage searchResultsPage = homePage.searchRoute("Berlin", "Prague");
 
-        // Click on Cheapest tab (no fixed IDs were found on the page, then I take the approach
-        // of using the index of the tab).
         log.info("Waiting for elements to load...");
         searchResultsPage.isAt();
-        // await().atMost(10, TimeUnit.SECONDS).until(() -> find(By.cssSelector("div[class^='SortingBar']")).present());
+
+        // Click on Cheapest tab (no fixed IDs were found on the page, then I take the approach
+        // of using the index of the tab).
         log.info("Clicking on Cheapest tab...");
-        find(By.cssSelector("div[class^='SortingBar']")).
-                find(By.tagName("div")).
-                get(1).click();
+        searchResultsPage.clickOnCheapestTab();
 
         // Click on the Train tab (no fixed IDs were found on the page, then I take the approach
         // of using the index of the tab).
         log.info("Clicking on the Train tab...");
-        // find(By.cssSelector(""))
-        find(By.cssSelector("div[class^='ResultTabs__resultTabsHeader']")).
-                find(By.cssSelector("a[class^='ResultTabs__']")).
-                first().click();
+        searchResultsPage.clickOnTrainTab();
 
         // Get the list of prices
         log.info("Getting list of prices and asserting the order...");
