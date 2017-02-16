@@ -66,25 +66,17 @@ public class SearchTest extends FluentTestNg {
         log.info("Waiting for elements to load...");
         searchResultsPage.isAt();
 
-        // Click on Cheapest tab (no fixed IDs were found on the page, then I take the approach
-        // of using the index of the tab).
+        // Click on Cheapest tab
         log.info("Clicking on Cheapest tab...");
         searchResultsPage.clickOnCheapestTab();
 
-        // Click on the Train tab (no fixed IDs were found on the page, then I take the approach
-        // of using the index of the tab).
+        // Click on the Train tab
         log.info("Clicking on the Train tab...");
         searchResultsPage.clickOnTrainTab();
 
         // Get the list of prices
         log.info("Getting list of prices and asserting the order...");
-        List<Float> pricesList = new ArrayList<>();
-        for (FluentWebElement fluentWebElement : find(By.cssSelector("div[class^='Result__resultPrice']"))) {
-            String price = fluentWebElement.find(By.cssSelector("span[class^='Result__priceMain']")).text() +
-                    fluentWebElement.find(By.cssSelector("span[class^='Result__pricePoint']")).text() +
-                    fluentWebElement.find(By.cssSelector("span[class^='Result__priceFraction']")).text();
-            pricesList.add(Float.parseFloat(price));
-        }
+        List<Float> pricesList = searchResultsPage.getListOfPrices();
         log.info(pricesList.toString());
 
         // Check that they are sorted in an ascendant order
