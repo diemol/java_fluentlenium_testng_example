@@ -44,7 +44,8 @@ most of the supported [platforms](https://www.docker.com/products/docker).
  
 ## How to run the test
 * After cloning the repository and starting Zalenium, just type on the repository root folder `mvn clean test`
-* The test steps will be shown in the console and the default TestNG report can be seen afterwards.
+* The test steps will be shown in the console and the default TestNG report can be seen afterwards. It can be seen on
+`{repositoryRootFolder/target/surefire-reports/index.html}`
 * You can also head to `/tmp/videos` and check how the test was executed.
 
 
