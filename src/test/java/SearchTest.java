@@ -1,7 +1,5 @@
 import org.fluentlenium.adapter.testng.FluentTestNg;
 import org.fluentlenium.core.annotation.Page;
-import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.CapabilityType;
@@ -10,9 +8,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.SearchResultsPage;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,6 +17,7 @@ public class SearchTest extends FluentTestNg {
 
     private static final Logger log = Logger.getLogger(SearchTest.class.getName());
 
+    @SuppressWarnings("unused")
     @Page
     private HomePage homePage;
 
@@ -49,7 +46,6 @@ public class SearchTest extends FluentTestNg {
     public void searchTripBetweenBerlinAndPragueOrdersResultsByPriceWhenSelectingCheapestTab() throws Exception {
 
         // Go to GoEuro.com
-
         log.info("Loading GoEuro...");
         window().maximize();
         goTo(homePage);

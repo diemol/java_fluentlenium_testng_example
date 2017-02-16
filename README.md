@@ -44,9 +44,9 @@ most of the supported [platforms](https://www.docker.com/products/docker).
  
 ## How to run the test
 * After cloning the repository and starting Zalenium, just type on the repository root folder `mvn clean test`
-* The test steps will be shown in the console and the default TestNG report can be seen afterwards. It can be seen on
-`{repositoryRootFolder/target/surefire-reports/index.html}`
-* You can also head to `/tmp/videos` and check how the test was executed.
+* The test steps will be shown in the console, and to see the report, after executing the tests, run `mvn site`, then 
+`mvn jetty:run` and heat to [http://localhost:8080](http://localhost:8080).
+* You can also head to `/tmp/videos` and check the video and see how the test was executed.
 
 
 ## Page Objects and Fluentlenium
